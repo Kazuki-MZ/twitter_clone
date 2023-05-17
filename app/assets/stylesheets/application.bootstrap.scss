@@ -1,2 +1,26 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'bootstrap-icons/font/bootstrap-icons';
+
+
+.icon {
+    color: #2dcafa
+}
+.form {
+  margin-top: 100px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+
+  &__title {
+        text-align: center;
+        margin: 10px 0 30px;
+    }
+  &__button {
+        margin-top: 2em;
+        text-align: center; 
+    }
+}
+
+
+
+.form-group {
+    margin-top: 1em;
+}

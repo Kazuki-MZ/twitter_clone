@@ -80,3 +80,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
+
+gem 'devise'
+gem 'slim-rails'
+group :development do
+  gem 'letter_opener_web', '~> 2.0'
+  gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
+end
