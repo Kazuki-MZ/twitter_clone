@@ -63,7 +63,7 @@ Rails.application.configure do
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "myapp_production"
-  config.action_mailer.default_url_options = { host: 'Sandbox1507fd516192442a9900f8625e3e1ade.mailgun.org' }
+  config.action_mailer.default_url_options = { host: 'kazu-twitter-clone.herokuapp.com' }
   config.action_mailer.perform_caching = false
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
@@ -73,7 +73,7 @@ Rails.application.configure do
     address: ENV['MAILGUN_SMTP_SERVER'],
     user_name: ENV['MAILGUN_SMTP_LOGIN'],
     password: ENV['MAILGUN_SMTP_PASSWORD'],
-    domain: 'Sandbox1507fd516192442a9900f8625e3e1ade.mailgun.org',
+    domain: 'kazu-twitter-clone.herokuapp.com',
     authentication: :plain
   }
   # Ignore bad email addresses and do not raise email delivery errors.
