@@ -15,5 +15,5 @@ html
         = value
       - if user_signed_in? 
         .log_out 
-          = link_to "ログアウト", destroy_user_session_path, method: :delete
+          = link_to "ログアウト", destroy_user_session_path, turbo_method: :delete
     = yield
