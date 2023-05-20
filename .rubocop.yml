@@ -4,8 +4,6 @@ require:
   - rubocop-hc
 Style/Documentation:
   Enabled: false
-Hc/RailsSpecificActionName:
-  Enabled: false
 Metrics/BlockLength:
   Max: 31
 Metrics/MethodLength:
