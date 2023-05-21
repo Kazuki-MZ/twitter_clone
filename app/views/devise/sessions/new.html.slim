@@ -1,0 +1,19 @@
+.container
+  .row
+    .col-md-6.offset-md-3
+      .card.form
+        .card-body
+          h1.icon class="bi bi-twitter"
+          h2.form__title Twitterにログイン
+          = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            .form-group
+                = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'メールアドレス'
+            
+            .form-group
+                = f.password_field :password, autofocus: true, autocomplete: "password_field", class: 'form-control', placeholder: 'パスワード'
+
+            .form__button
+              = f.submit "ログイン", class: 'btn btn-primary'
+              br/
+            .action
+              = link_to "新規作成", new_registration_path(resource_name)

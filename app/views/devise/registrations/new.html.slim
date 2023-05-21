@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-md-6.offset-md-3
+      .card.form
+        .card-body
+          h1.icon class="bi bi-twitter"
+          h2.form__title アカウントを作成
+          = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
+            = render "devise/shared/error_messages", resource: resource
+            .form-group
+              = f.text_field :name, autofocus: true, autocomplete: "name", class: 'form-control', placeholder: '名前'
+            
+            .form-group
+              = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'メールアドレス'
+
+            .form-group
+              = f.text_field :telephone_number, autofocus: true, autocomplete: "telephone_number",class: 'form-control', placeholder: '電話番号'
+
+            .form-group
+              = f.date_field :date_of_birth, class: 'form-control'
+            
+            .form-group
+              = f.password_field :password, autofocus: true, autocomplete: "password",class: 'form-control', placeholder: 'パスワード'
+
+            .form-group
+              = f.password_field :password_confirmation, autofocus: true, autocomplete: "password_confirmation",class: 'form-control', placeholder: 'パスワード確認(再入力)'
+
+            .form__button 
+              = f.submit "新規登録", class: 'btn btn-primary'
+            
+            .actions
+              = link_to "ログイン", new_session_path(resource_name)
