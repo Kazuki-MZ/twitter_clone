@@ -16,4 +16,6 @@
               = f.submit "ログイン", class: 'btn btn-primary'
               br/
             .action
+              = link_to "githubログイン", user_github_omniauth_authorize_path, method: :post
+            .action
               = link_to "新規作成", new_registration_path(resource_name)

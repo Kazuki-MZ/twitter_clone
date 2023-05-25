@@ -80,8 +80,10 @@ group :test do
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
-
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-github'
+gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
 group :development do
   gem 'letter_opener_web', '~> 2.0'
