@@ -6,6 +6,7 @@ module Users
     # devise :omniauthable, omniauth_providers: [:twitter]
 
     # You should also create an action method in this controller like this:
+    skip_before_action :verify_authenticity_token, only: :create
     def create
       @user = User.from_omniauth(request.env['omniauth.auth'])
 
