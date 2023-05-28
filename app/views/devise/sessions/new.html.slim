@@ -3,7 +3,7 @@
     .col-md-6.offset-md-3
       .card.form
         .card-body
-          h1.icon class="bi bi-twitter"
+          h1.twitter_icon class="bi bi-twitter"
           h2.form__title Twitterにログイン
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
             .form-group
@@ -15,7 +15,7 @@
             .form__button
               = f.submit "ログイン", class: 'btn btn-primary'
               br/
-            .action
-              = link_to "githubログイン", user_github_omniauth_authorize_path, method: :post
+            .form__button
+              = link_to "GitHubでログイン", user_github_omniauth_authorize_path,  class: "btn btn-dark", method: :post
             .action
               = link_to "新規作成", new_registration_path(resource_name)
