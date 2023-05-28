@@ -9,7 +9,8 @@ module Users
     skip_before_action :verify_authenticity_token, only: :github
     def github
       @user = User.from_omniauth(request.env['omniauth.auth'])
-
+      @user.skip_confirmation!
+      @user.save!
       if @user.persisted?
         sign_in_and_redirect @user, event: :authentication
         set_flash_message(:notice, :success, kind: 'github') if is_navigational_format?

@@ -12,7 +12,7 @@ class User < ApplicationRecord
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? & provider.present? }
 
   def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
+    where(provider: auth.provider, uid: auth.uid).first_or_initialize do |user|
       user.email = auth.info.email || User.dummy_email(auth)
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name || auth.info.nickname
@@ -20,6 +20,8 @@ class User < ApplicationRecord
       user.telephone_number = '123456789'
     end
   end
+
+  private
 
   def self.create_unique_string
     SecureRandom.uuid
