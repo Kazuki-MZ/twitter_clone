@@ -7,8 +7,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :confirmable, :validatable, :omniauthable, omniauth_providers: %i[github]
 
   validates :name, presence: true
-  validates :telephone_number, presence: true
-  validates :date_of_birth, presence: true
+  validates :telephone_number, presence: true, if: -> { provider.blank? }
+  validates :date_of_birth, presence: true, if: -> { provider.blank? }
   validates :uid, presence: true, uniqueness: { scope: :provider }, if: -> { uid.present? & provider.present? }
 
   def self.from_omniauth(auth)
@@ -19,12 +19,6 @@ class User < ApplicationRecord
       user.date_of_birth = '2000/01/01'
       user.telephone_number = '123456789'
     end
-  end
-
-  private
-
-  def self.create_unique_string
-    SecureRandom.uuid
   end
 
   def self.dummy_email(auth)
