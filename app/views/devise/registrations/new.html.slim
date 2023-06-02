@@ -3,7 +3,7 @@
     .col-md-6.offset-md-3
       .card.form
         .card-body
-          h1.icon class="bi bi-twitter"
+          h1.twitter_icon class="bi bi-twitter"
           h2.form__title アカウントを作成
           = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
             = render "devise/shared/error_messages", resource: resource
@@ -27,6 +27,7 @@
 
             .form__button 
               = f.submit "新規登録", class: 'btn btn-primary'
-            
+            .form__button
+              = link_to "GitHubで新規登録", user_github_omniauth_authorize_path, class: "btn btn-dark", method: :post, data: { turbo: false }
             .actions
               = link_to "ログイン", new_session_path(resource_name)
