@@ -85,6 +85,10 @@ gem 'omniauth'
 gem 'omniauth-github'
 gem 'omniauth-rails_csrf_protection'
 gem 'slim-rails'
+
+gem 'bootstrap5-kaminari-views'
+gem 'kaminari'
+
 group :development do
   gem 'letter_opener_web', '~> 2.0'
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
