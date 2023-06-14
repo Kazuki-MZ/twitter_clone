@@ -88,7 +88,9 @@ gem 'slim-rails'
 
 gem 'bootstrap5-kaminari-views'
 gem 'kaminari'
-
+gem 'carrierwave'
+gem 'cloudinary'
+gem 'activestorage-cloudinary-service'
 group :development do
   gem 'letter_opener_web', '~> 2.0'
   gem 'rubocop-hc', require: false, github: 'ihatov08/rubocop-hc'
