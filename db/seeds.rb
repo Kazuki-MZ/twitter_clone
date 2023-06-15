@@ -7,7 +7,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-jone = User.create!({
+jone = User.new({
                       name: 'Jone',
                       email: 'jone@test.com',
                       password: '********',
@@ -19,7 +19,7 @@ jone.icon.attach(io: File.open(Rails.root.join('app/assets/images/dog.jpg')),
 jone.skip_confirmation!
 jone.save!
 
-nick = User.create!({
+nick = User.new({
                       name: 'Nick',
                       email: 'nick@test.com',
                       password: '********',
@@ -31,7 +31,7 @@ nick.icon.attach(io: File.open(Rails.root.join('app/assets/images/shark.jpg')),
 nick.skip_confirmation!
 nick.save!
 
-maria = User.create!({
+maria = User.new({
                        name: 'Maria',
                        email: 'maria@test.com',
                        password: '********',
