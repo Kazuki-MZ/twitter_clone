@@ -88,7 +88,6 @@ gem 'slim-rails'
 
 gem 'bootstrap5-kaminari-views'
 gem 'kaminari'
-gem 'carrierwave'
 gem 'cloudinary'
 gem 'activestorage-cloudinary-service'
 group :development do
