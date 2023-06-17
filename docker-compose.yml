@@ -18,9 +18,8 @@ services:
       - "3000:3000"
     depends_on:
       - db
-    environment: 
-      - GITHUB_CLIENT_ID
-      - GITHUB_CLIENT_SECRET
+    env_file:
+      - .env
   js:
     image: rails_template:latest
     command: yarn build --watch

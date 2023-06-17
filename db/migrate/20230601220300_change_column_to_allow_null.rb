@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class ChangeColumnToAllowNull < ActiveRecord::Migration[7.0]
   def up
-    change_column :users, :date_of_birth,:date, null: true 
+    change_column :users, :date_of_birth, :date, null: true
   end
 
   def down
-    change_column :users, :date_of_birth,:date, null: false
+    change_column :users, :date_of_birth, :date, null: false
   end
 end

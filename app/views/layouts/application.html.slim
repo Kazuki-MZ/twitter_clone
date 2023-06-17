@@ -13,7 +13,17 @@ html
       - flash.each do |key, value|
         div class="flash #{key}"
         = value
-      - if user_signed_in? 
-        .log_out 
-          = link_to "ログアウト", destroy_user_session_path, turbo_method: :delete
+      div class="border-bottom d-flex align-items-center justify-content-between"
+        h4.twitter_icon class="bi bi-twitter" Twitterクローン
+        nav class="navbar d-flex justify-content-end"
+          ul class="navbar-nav"
+          - if user_signed_in? 
+              li.nav-link
+                = link_to "ログアウト", destroy_user_session_path, turbo_method: :delete, class: 'btn btn-outline-primary mx-2'
+          - else
+              li.nav-link
+                = link_to "ログイン", new_session_path(:user), class: 'btn btn-outline-primary mx-2'
+              li.nav-link
+                = link_to "新規作成", new_registration_path(:user), class: 'btn btn-primary mx-2'
+        
     = yield
