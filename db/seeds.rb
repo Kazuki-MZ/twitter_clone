@@ -8,50 +8,73 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 jone = User.new({
-                      name: 'Jone',
-                      email: 'jone@test.com',
-                      password: '********',
-                      telephone_number: 111_111,
-                      date_of_birth: Date.new(2000, 1, 1)
-                    })
-jone.icon.attach(io: File.open(Rails.root.join('app/assets/images/dog.jpg')),
-                 filename: 'dog.jpeg')
+                  name: 'test_jone',
+                  email: 'jone@test.com',
+                  password: '********',
+                  telephone_number: 111_111,
+                  date_of_birth: Date.new(2000, 1, 1)
+                })
 jone.skip_confirmation!
 jone.save!
 
+jone.create_profile!({ user_name: 'Jone', bio: "Hello I'm jone", location: '東京都', website: 'https://www.jone.example.com' })
+
+jone.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/dog.jpg')),
+                         filename: 'dog.jpeg')
+jone.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
+                           filename: 'header.jpeg')
+
 nick = User.new({
-                      name: 'Nick',
-                      email: 'nick@test.com',
-                      password: '********',
-                      telephone_number: 111_111,
-                      date_of_birth: Date.new(2000, 1, 1)
-                    })
-nick.icon.attach(io: File.open(Rails.root.join('app/assets/images/shark.jpg')),
-                 filename: 'shark.jpeg')
+                  name: 'test_nick',
+                  email: 'nick@test.com',
+                  password: '********',
+                  telephone_number: 111_111,
+                  date_of_birth: Date.new(2000, 1, 1)
+                })
 nick.skip_confirmation!
 nick.save!
 
+nick.create_profile!({ user_name: 'Nick', bio: "Hello I'm nick", location: '東京都', website: 'https://www.nick.example.com' })
+nick.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/shark.jpg')),
+                         filename: 'shark.jpeg')
+nick.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
+                           filename: 'header.jpeg')
+
 maria = User.new({
-                       name: 'Maria',
-                       email: 'maria@test.com',
-                       password: '********',
-                       telephone_number: 111_111,
-                       date_of_birth: Date.new(2000, 1, 1)
-                     })
-maria.icon.attach(io: File.open(Rails.root.join('app/assets/images/banana.jpg')),
-                  filename: 'banana.jpeg')
+                   name: 'test_maria',
+                   email: 'maria@test.com',
+                   password: '********',
+                   telephone_number: 111_111,
+                   date_of_birth: Date.new(2000, 1, 1)
+                 })
 maria.skip_confirmation!
 maria.save!
 
+maria.create_profile!({ user_name: 'Maria', bio: "Hello I'm maria", location: '東京都', website: 'https://www.maria.example.com' })
+maria.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/banana.jpg')),
+                          filename: 'banana.jpeg')
+maria.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
+                            filename: 'header.jpeg')
 
-jone.tweets.create!(text: 'Test tweet from John')
-jone.tweets.create!(text: 'Hello from John')
-nick.tweets.create!(text: 'Test tweet from Nick')
-nick.tweets.create!(text: 'Hello')
-maria.tweets.create!(text: 'Test tweet from Maria')
-maria.tweets.create!(text: 'Hello from Maria')
-
+jone_tweet1 = jone.tweets.create!(text: 'Test tweet from John')
+jone_tweet2 = jone.tweets.create!(text: 'Hello from John')
+nick_tweet1 = nick.tweets.create!(text: 'Test tweet from Nick')
+nick_tweet2 = nick.tweets.create!(text: 'Hello')
+maria_tweet1 = maria.tweets.create!(text: 'Test tweet from Maria')
+maria_tweet2 = maria.tweets.create!(text: 'Hello from Maria')
 
 jone.following << nick
 nick.following << maria
 maria.following << jone
+
+jone.favorite_tweets << nick_tweet1
+nick.favorite_tweets << jone_tweet1
+maria.favorite_tweets << jone_tweet1
+
+jone.retweet_tweets << [maria_tweet1, nick_tweet2]
+nick.retweet_tweets << maria_tweet2
+maria.retweet_tweets << jone_tweet2
+
+jone.comment_tweets << [nick_tweet1, nick_tweet2]
+nick.comment_tweets << maria_tweet2
+maria.comment_tweets << nick_tweet2

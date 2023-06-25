@@ -25,5 +25,45 @@ html
                 = link_to "ログイン", new_session_path(:user), class: 'btn btn-outline-primary mx-2'
               li.nav-link
                 = link_to "新規作成", new_registration_path(:user), class: 'btn btn-primary mx-2'
-        
+  - if user_signed_in? 
+      .container-fluid.vh-100 
+        .row class="h-100"
+          .col-2 class="border-end"
+            nav class="navbar d-flex justify-content-center "
+              ul class="navbar-nav"
+                li.nav-link 
+                = link_to "ホーム", root_path
+                li.nav-link
+                  = link_to do
+                  span.bi-hash.me-2
+                  | 話題を検索
+                li.nav-link
+                  = link_to do
+                  span.bi-bell.me-2
+                  | 通知
+                li.nav-link
+                  = link_to do
+                  span.bi-envelope.me-2
+                  | メッセージ
+                li.nav-link
+                  = link_to do
+                  span.bi-bookmark.me-2
+                  | ブックマーク
+                li.nav-link
+                  = link_to do
+                  span.bi-twitter.me-2
+                  | Twitter Blue
+                li.nav-link
+                  = link_to profile_path do
+                    span.bi-person.me-2
+                    | プロフィール
+                li.nav-link
+                  = link_to do 
+                  span.bi-filter-circle.me-2
+                  | もっと見る
+                li.nav-link
+                  = link_to "ツイートする" 
+          .col-10
+            = yield
+  - else 
     = yield

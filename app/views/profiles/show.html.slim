@@ -1,0 +1,77 @@
+.row.d-flex.align-items-center
+  .col-auto
+    = link_to root_path, class: "bi bi-arrow-left" do
+  .col-auto 
+    .row.d-flex.flex-column
+      .col-auto style="font-size: 25px;"
+        = current_user.profile.user_name || current_user.name
+      .col-auto.text-muted style="font-size: 15px;"
+        = "#{current_user.tweets.count}件のツイート"
+  div.relative
+    = image_tag current_user.profile.header, style: 'width: 100%; height: 200px'
+    = image_tag current_user.profile.icon, size: "150x150", class: "absolute rounded-circle"
+.row.m-2.d-flex.flex-column
+  .col-auto.d-grid.gap-2.d-md-flex.justify-content-md-end
+    = link_to "プロフィールを編集", class: "btn btn-secondary"
+  .col-auto  
+    div.my-4
+      h2 = current_user.profile.user_name
+      h6.text-muted
+        = "@#{current_user.name}"
+    div 
+      h4
+        = current_user.profile.bio
+    div.d-flex.justify-content-start.text-muted.mt-3
+      span.bi.bi-geo-alt
+        = current_user.profile.location
+      span.bi.bi-paperclip.mx-3
+        = link_to "#{current_user.profile.website}"
+      span.bi.bi-balloon
+        = current_user.date_of_birth.strftime('%Y年%m月%d日')
+    div.text-muted 
+      p.bi.bi-calendar3
+        = "#{current_user.created_at.strftime('%Y年%m月')}からTwitterを利用しています"
+    div.d-flex.justify-content-start.text-muted
+      p 
+        = current_user.following.count
+        span.text-muted.d-inline
+          | フォロー中
+      p.mx-3
+        = current_user.followers.count
+        span.text-muted
+          | フォロワー
+
+nav class="navbar" 
+  ul.nav.nav-tabs role="tablist"
+    li.nav-item
+      button.nav-link.active.link-text data-bs-toggle="tab" href="#tweet" role="presentation" aria-controls="tweet" aria-selected="true"
+        | ツイート
+    li.nav-item.profile_tab
+      button.nav-link.link-text data-bs-toggle="tab" href="#favorite" role="presentation" aria-controls="favorite" aria-selected="false"
+        | いいね
+    li.nav-item.profile_tab
+      button.nav-link.link-text data-bs-toggle="tab" href="#retweet" role="presentation" aria-controls="retweet" aria-selected="false"
+        | リツイート
+    li.nav-item.profile_tab
+      button.nav-link.link-text data-bs-toggle="tab" href="#comment" role="presentation" aria-controls="comment" aria-selected="false"
+        | コメント
+.tab-content
+  .tab-pane.fade.show.active#tweet role="tabpanel" aria-labelledby="tweet-tab"
+    .row
+      .col-12
+        = render "layouts/tweet", tweet: @my_tweets
+
+  .tab-pane.fade#favorite role="tabpanel" aria-labelledby="favorite-tab"
+    .row
+      .col-12 
+        = render "layouts/tweet", tweet: @favorite_tweets
+           
+  .tab-pane.fade#retweet role="tabpanel" aria-labelledby="retweet-tab"
+    .row 
+      .col-12
+        = render "layouts/tweet", tweet: @retweet_tweets
+        
+  .tab-pane.fade#comment role="tabpanel" aria-labelledby="comment-tab"
+    .row 
+      .col-12 
+        = render "layouts/tweet", tweet: @comment_tweets

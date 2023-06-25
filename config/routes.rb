@@ -10,5 +10,6 @@ Rails.application.routes.draw do
   end
   resources :tweets, only: :index
   root to: 'tweets#index'
+  resource :profile, only: %i[show]
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end
