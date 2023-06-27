@@ -7,7 +7,7 @@
       .col-11 
         p.text-muted
           = "#{time_ago_in_words(tweet.created_at)}前"
-        h5 = tweet.user.profile.user_name || tweet.user.name
+        h5 = tweet.user.profile.user_name 
         p = tweet.text
         nav class="nav"
           li.nav-item

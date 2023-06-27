@@ -64,7 +64,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_25_044454) do
   end
 
   create_table "profiles", force: :cascade do |t|
-    t.string "user_name"
+    t.string "user_name", null: false
     t.string "bio"
     t.string "location"
     t.string "website"

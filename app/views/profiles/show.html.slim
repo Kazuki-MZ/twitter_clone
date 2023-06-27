@@ -4,7 +4,7 @@
   .col-auto 
     .row.d-flex.flex-column
       .col-auto style="font-size: 25px;"
-        = current_user.profile.user_name || current_user.name
+        = current_user.profile.user_name
       .col-auto.text-muted style="font-size: 15px;"
         = "#{current_user.tweets.count}件のツイート"
   div.relative
@@ -19,15 +19,18 @@
       h6.text-muted
         = "@#{current_user.name}"
     div 
-      h4
-        = current_user.profile.bio
+      - if current_user.profile.bio.present?
+      h4 = current_user.profile.bio
     div.d-flex.justify-content-start.text-muted.mt-3
-      span.bi.bi-geo-alt
-        = current_user.profile.location
-      span.bi.bi-paperclip.mx-3
-        = link_to "#{current_user.profile.website}"
-      span.bi.bi-balloon
-        = current_user.date_of_birth.strftime('%Y年%m月%d日')
+      - if current_user.profile.location.present?
+        span.bi.bi-geo-alt
+          = current_user.profile.location
+      - if current_user.profile.website.present?
+        span.bi.bi-paperclip.mx-3
+          = link_to "#{current_user.profile.website}"
+      - if current_user.date_of_birth.present?
+        span.bi.bi-balloon
+          = current_user.date_of_birth.strftime('%Y年%m月%d日')
     div.text-muted 
       p.bi.bi-calendar3
         = "#{current_user.created_at.strftime('%Y年%m月')}からTwitterを利用しています"

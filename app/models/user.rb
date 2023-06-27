@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require 'open-uri'
 class User < ApplicationRecord
   has_many :tweets, dependent: :destroy
   has_many :active_relationships, class_name: 'Relationship',
@@ -34,6 +35,14 @@ class User < ApplicationRecord
       user.email = auth.info.email
       user.password = Devise.friendly_token[0, 20]
       user.name = auth.info.name || auth.info.nickname
+      url = URI.parse(auth.info.image.to_s)
+      icon_image = url.open
+      if user.profile.blank?
+        user.build_profile(user_name: auth.info.nickname)
+        user.profile.icon.attach(io: icon_image, filename: 'user_avatar.jpg')
+        user.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
+                                   filename: 'header.jpeg')
+      end
     end
   end
 end
