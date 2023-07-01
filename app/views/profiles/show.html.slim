@@ -44,37 +44,14 @@
         span.text-muted
           | フォロワー
 
-nav class="navbar" 
-  ul.nav.nav-tabs role="tablist"
-    li.nav-item
-      button.nav-link.active.link-text data-bs-toggle="tab" href="#tweet" role="presentation" aria-controls="tweet" aria-selected="true"
-        | ツイート
-    li.nav-item.profile_tab
-      button.nav-link.link-text data-bs-toggle="tab" href="#favorite" role="presentation" aria-controls="favorite" aria-selected="false"
-        | いいね
-    li.nav-item.profile_tab
-      button.nav-link.link-text data-bs-toggle="tab" href="#retweet" role="presentation" aria-controls="retweet" aria-selected="false"
-        | リツイート
-    li.nav-item.profile_tab
-      button.nav-link.link-text data-bs-toggle="tab" href="#comment" role="presentation" aria-controls="comment" aria-selected="false"
-        | コメント
-.tab-content
-  .tab-pane.fade.show.active#tweet role="tabpanel" aria-labelledby="tweet-tab"
-    .row
-      .col-12
-        = render "layouts/tweet", tweet: @my_tweets
+ul class="nav nav-tabs d-flex justify-content-around"
+  .li.nav-item
+    = link_to 'ツイート', profile_mytweets_path, class: "nav-link acitive", data: {turbo_frame: 'tab_content'}
+  .li.nav-item
+    = link_to 'いいね', profile_favorites_path, class: "nav-link", data: {turbo_frame: 'tab_content'}
+  .li.nav-item
+    = link_to 'リツイート', profile_retweets_path, class: "nav-link", data: {turbo_frame: 'tab_content'}
+  .li.nav-item
+    = link_to 'コメント', profile_comments_path, class: "nav-link", data: {turbo_frame: 'tab_content'}
 
-  .tab-pane.fade#favorite role="tabpanel" aria-labelledby="favorite-tab"
-    .row
-      .col-12 
-        = render "layouts/tweet", tweet: @favorite_tweets
-           
-  .tab-pane.fade#retweet role="tabpanel" aria-labelledby="retweet-tab"
-    .row 
-      .col-12
-        = render "layouts/tweet", tweet: @retweet_tweets
-        
-  .tab-pane.fade#comment role="tabpanel" aria-labelledby="comment-tab"
-    .row 
-      .col-12 
-        = render "layouts/tweet", tweet: @comment_tweets
+= turbo_frame_tag 'tab_content', src: profile_mytweets_path 
