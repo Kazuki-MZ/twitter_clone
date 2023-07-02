@@ -1,104 +1,35 @@
-.container-fluid.vh-100 
-  .row class="h-100"
-    .col-2 class="border-end"
-      nav class="navbar d-flex justify-content-center "
-        ul class="navbar-nav"
-          li.nav-link 
-           = link_to do
-             span.bi-house-door.me-2
-             | ホーム
-          li.nav-link
-            = link_to do
-             span.bi-hash.me-2
-             | 話題を検索
-          li.nav-link
-            = link_to do
-             span.bi-bell.me-2
-             | 通知
-          li.nav-link
-            = link_to do
-             span.bi-envelope.me-2
-             | メッセージ
-          li.nav-link
-            = link_to do
-             span.bi-bookmark.me-2
-             | ブックマーク
-          li.nav-link
-            = link_to do
-             span.bi-twitter.me-2
-             | Twitter Blue
-          li.nav-link
-           = link_to do
-             span.bi-person.me-2
-             | プロフィール
-          li.nav-link
-            = link_to do
-             span.bi-filter-circle.me-2
-             | もっと見る
-          li.nav-link
-            = link_to "ツイートする"
+.row 
+  .col-12
+h3 ホーム
+nav class="navbar d-flex justify-content-around" 
+  ul class="nav nav-tabs" role="tablist"
+    li.nav-item
+      button.nav-link.active.link-text data-bs-toggle="tab" href="#recommended" role="presentation" aria-controls="recommended" aria-selected="true"
+       | おすすめ
+    li.nav-item
+      button.nav-link.link-text data-bs-toggle="tab" href="#following" role="presentation" aria-controls="following" aria-selected="false"
+       | フォロー中
+.tab-content
+  .tab-pane.fade.show.active#recommended role="tabpanel" aria-labelledby="recommended-tab"
+    .row class="border-top"
+      .col-1 class="d-flex justify-content-center"
+        = link_to profile_path
+          = image_tag current_user.profile.icon, size: "50x50", class: "rounded-circle"
+      .col-11 
+        = render 'form'
+    .row
+      .col-12 class="border-top"
+        = render "layouts/tweet", tweet: @tweets
+    = paginate @tweets, theme: 'bootstrap-5' 
 
-    .col-10
-      .row 
-        .col-12
-      h3 ホーム
-      nav class="navbar d-flex justify-content-around" 
-        ul class="nav nav-tabs" role="tablist"
-         li.nav-item
-           button.nav-link.active.link-text data-bs-toggle="tab" href="#recommended" role="presentation" aria-controls="recommended" aria-selected="true"
-            | おすすめ
-         li.nav-item
-           button.nav-link.link-text data-bs-toggle="tab" href="#following" role="presentation" aria-controls="following" aria-selected="false"
-            | フォロー中
-      .tab-content
-        .tab-pane.fade.show.active#recommended role="tabpanel" aria-labelledby="recommended-tab"
-          .row class="border-top"
-            .col-1 class="d-flex justify-content-center"
-              = image_tag current_user.icon, size: "50x50", class: "rounded-circle"
-            .col-11 
-              = render 'form'
-          .row
-            .col-12 class="border-top"
-              .card
-              - @tweets.each do |tweet|
-                .card-body 
-                  .row 
-                    .col-1 class="d-flex justify-content-center align-items-center"
-                      = image_tag tweet.user.icon, size: "45x45", class: "rounded-circle"
-                    .col-11 
-                      h5 = tweet.user.name
-                      p = tweet.text
-                      nav class="nav"
-                        li.nav-item
-                          a.navbar-brand href="#" class="bi bi-chat"
-                        li.nav-item 
-                          a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
-                        li.nav-item
-                          a.navbar-brand href="#" class="bi-heart"
-        
-        .tab-pane.fade#following role="tabpanel" aria-labelledby="following-tab"
-          .row class="border-top"
-            .col-1 class="d-flex justify-content-center"
-              = image_tag current_user.icon, size: "50x50", class: "rounded-circle"
-            .col-11 
-              = render 'form'
-          .row
-            .col-12 class="border-top"
-              .card
-              - @following_tweets.each do |tweet|
-                .card-body
-                  .row 
-                    .col-1 class="d-flex justify-content-center align-items-center"
-                      = image_tag tweet.user.icon, size: "45x45", class: "rounded-circle"
-                    .col-11 
-                      h5 = tweet.user.name
-                      p = tweet.text
-                      nav class="nav"
-                        li.nav-item
-                          a.navbar-brand href="#" class="bi bi-chat"
-                        li.nav-item 
-                          a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
-                        li.nav-item
-                          a.navbar-brand href="#" class="bi-heart"
-
-      = paginate @tweets, theme: 'bootstrap-5'
+  .tab-pane.fade#following role="tabpanel" aria-labelledby="following-tab"
+    .row class="border-top"
+      .col-1 class="d-flex justify-content-center"
+        = link_to profile_path
+          = image_tag current_user.profile.icon, size: "50x50", class: "rounded-circle"
+      .col-11 
+        = render 'form'
+    .row
+      .col-12 class="border-top"
+        = render "layouts/tweet", tweet: @following_tweets
+    = paginate @following_tweets, theme: 'bootstrap-5'

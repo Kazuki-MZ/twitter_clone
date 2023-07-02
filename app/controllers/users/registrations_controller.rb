@@ -8,7 +8,14 @@ module Users
     # GET /resource/sign_up
 
     # POST /resource
-
+    def create
+      super do |resource|
+        resource.build_profile(user_name: resource.name)
+        resource.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.jpg')), filename: 'icon.jpeg')
+        resource.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpeg')
+        resource.profile.save!
+      end
+    end
     # GET /resource/edit
     # def edit
     #   super

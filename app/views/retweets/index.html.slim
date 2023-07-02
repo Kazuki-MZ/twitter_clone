@@ -1,0 +1,5 @@
+= turbo_frame_tag 'tab_content'
+  .row 
+    .col-12
+      = render "layouts/tweet", tweet: @retweet_tweets
+  = paginate @retweet_tweets, theme: 'bootstrap-5'
