@@ -17,7 +17,7 @@ jone = User.new({
 jone.skip_confirmation!
 jone.save!
 
-jone.create_profile!({ user_name: 'Jone', bio: "Hello I'm jone", location: '東京都', website: 'https://www.jone.example.com' })
+jone.create_profile!({ nickname: 'Jone', bio: "Hello I'm jone", location: '東京都', website: 'https://www.jone.example.com' })
 
 jone.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/dog.jpg')),
                          filename: 'dog.jpeg')
@@ -34,7 +34,7 @@ nick = User.new({
 nick.skip_confirmation!
 nick.save!
 
-nick.create_profile!({ user_name: 'Nick', bio: "Hello I'm nick", location: '東京都', website: 'https://www.nick.example.com' })
+nick.create_profile!({ nickname: 'Nick', bio: "Hello I'm nick", location: '東京都', website: 'https://www.nick.example.com' })
 nick.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/shark.jpg')),
                          filename: 'shark.jpeg')
 nick.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
@@ -50,7 +50,7 @@ maria = User.new({
 maria.skip_confirmation!
 maria.save!
 
-maria.create_profile!({ user_name: 'Maria', bio: "Hello I'm maria", location: '東京都', website: 'https://www.maria.example.com' })
+maria.create_profile!({ nickname: 'Maria', bio: "Hello I'm maria", location: '東京都', website: 'https://www.maria.example.com' })
 maria.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/banana.jpg')),
                           filename: 'banana.jpeg')
 maria.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
