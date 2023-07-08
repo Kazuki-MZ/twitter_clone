@@ -35,6 +35,8 @@ class UserProfileForm
     @user = user
     attributes ||= default_attributes
     super(attributes)
+    set_icon
+    set_header
   end
 
   def save
@@ -46,6 +48,14 @@ class UserProfileForm
     end
   rescue ActiveRecord::RecordInvalid
     false
+  end
+
+  def set_icon
+    self.icon = @profile.icon.blob if icon.blank?
+  end
+
+  def set_header
+    self.header = @profile.header.blob if header.blank?
   end
 
   private
