@@ -12,6 +12,8 @@ class UserProfileForm
   attribute :header
   attribute :date_of_birth, :date
 
+  VALID_URL = %r{\Ahttps?://[\w!?+/\-~;.,*&@#$%()\[\]]+\z}
+  validates :website, format: { with: VALID_URL }
   validates :nickname, presence: true
   validates :date_of_birth, presence: true
   validates :header, presence: true
