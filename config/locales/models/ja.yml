@@ -1,4 +1,14 @@
 ja:
+  activemodel:
+    attributes:
+      user_profile_form:
+        nickname: ニックネーム
+        bio: 自己紹介
+        location: 場所
+        website: ウェブサイト
+        icon: アイコン画像 
+        header:  ヘッダー画像
+        date_of_birth: 生年月日
   activerecord:
     models:
       user: ユーザー
@@ -8,4 +18,9 @@ ja:
         email: メールアドレス
         telephone_number: 電話番号
         date_of_birth: 生年月日
- 
+      profile:
+        nickname: ニックネーム
+        bio: 自己紹介
+        location: 場所
+        website: ウェブサイト
+    

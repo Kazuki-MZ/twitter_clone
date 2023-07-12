@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   resources :tweets, only: :index
   root to: 'tweets#index'
 
+  resource :profile, only: %i[edit update]
   resource :profile, only: %i[show] do
     resources :mytweets, only: %i[index]
     resources :favorites, only: %i[index]
