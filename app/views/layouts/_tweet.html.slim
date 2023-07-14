@@ -1,14 +1,16 @@
-.card 
+.card
 - tweet.each do |tweet|
-  .card-body 
+  .card-body.border.border-1
     .row
       .col-1 class="d-flex justify-content-center align-items-center"
-        = image_tag tweet.user.profile.icon, size: "45x45", class: "rounded-circle"
+        = image_tag tweet.user.profile.icon, size: "55x55", class: "rounded-circle"
       .col-11 
         p.text-muted
           = "#{time_ago_in_words(tweet.created_at)}前"
         h5 = tweet.user.profile.nickname 
         p = tweet.text
+        - if tweet.image.present?
+          = image_tag tweet.image, size: "150x150"
         nav class="nav"
           li.nav-item
             a.navbar-brand href="#" class="bi bi-chat"

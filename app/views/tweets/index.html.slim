@@ -1,35 +1,16 @@
 .row 
   .col-12
-h3 ホーム
-nav class="navbar d-flex justify-content-around" 
-  ul class="nav nav-tabs" role="tablist"
-    li.nav-item
-      button.nav-link.active.link-text data-bs-toggle="tab" href="#recommended" role="presentation" aria-controls="recommended" aria-selected="true"
-       | おすすめ
-    li.nav-item
-      button.nav-link.link-text data-bs-toggle="tab" href="#following" role="presentation" aria-controls="following" aria-selected="false"
-       | フォロー中
-.tab-content
-  .tab-pane.fade.show.active#recommended role="tabpanel" aria-labelledby="recommended-tab"
-    .row class="border-top"
-      .col-1 class="d-flex justify-content-center"
-        = link_to profile_path
-          = image_tag current_user.profile.icon, size: "50x50", class: "rounded-circle"
-      .col-11 
-        = render 'form'
-    .row
-      .col-12 class="border-top"
-        = render "layouts/tweet", tweet: @tweets
-    = paginate @tweets, theme: 'bootstrap-5' 
-
-  .tab-pane.fade#following role="tabpanel" aria-labelledby="following-tab"
-    .row class="border-top"
-      .col-1 class="d-flex justify-content-center"
-        = link_to profile_path
-          = image_tag current_user.profile.icon, size: "50x50", class: "rounded-circle"
-      .col-11 
-        = render 'form'
-    .row
-      .col-12 class="border-top"
-        = render "layouts/tweet", tweet: @following_tweets
-    = paginate @following_tweets, theme: 'bootstrap-5'
+    h3 ホーム
+    ul class="nav nav-tabs d-flex justify-content-around"
+      .li.nav-item
+        = link_to 'おすすめ', root_path, class: "nav-link ", data: {turbo_frame: 'tweets_content'}
+      .li.nav-item
+        = link_to 'フォロー中', following_user_tweets_path, class: "nav-link", data: {turbo_frame: 'tweets_content'}
+    = form_with model: @tweet do |form|
+      = render partial: "tweets/form", locals: { form: form }
+    
+    = turbo_frame_tag 'tweets_content'
+      .row
+        .col-12
+          = render "layouts/tweet", tweet: @tweets
+      = paginate @tweets, theme: 'bootstrap-5' 
