@@ -3,16 +3,10 @@
       = link_to profile_path
         = image_tag current_user.profile.icon, size: "70x70", class: "rounded-circle"
     .col-11 
-      - if form.object.errors.any?
-        div class="alert"
-          ul
-            - form.object.errors.full_messages.each do |message|
-              li = message
-
       .form_group
         = form.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
       .form-group
         = form.label :image, class: 'bi bi-card-image fs-4'
           = form.file_field :image, class:"hidden_image_form"
-      .form__button.d-flex.justify-content-end
+      .form_button.d-flex.justify-content-end
         = form.submit "ツイートする", class: 'btn btn-primary'

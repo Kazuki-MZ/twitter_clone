@@ -7,6 +7,7 @@
       .li.nav-item
         = link_to 'フォロー中', following_user_tweets_path, class: "nav-link", data: {turbo_frame: 'tweets_content'}
     = form_with model: @tweet do |form|
+      = render 'layouts/error_messages', model: @tweet
       = render partial: "tweets/form", locals: { form: form }
     
     = turbo_frame_tag 'tweets_content'

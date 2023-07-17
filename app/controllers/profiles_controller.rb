@@ -10,7 +10,8 @@ class ProfilesController < ApplicationController
     @my_profile = UserProfileForm.new(current_user, profile_params, profile: @profile)
 
     if @my_profile.save
-      redirect_to profile_path, notice: 'プロフィールが変更されました'
+      redirect_to profile_path
+      flash[:success] = 'プロフィールを編集しました'
     else
       render 'edit'
     end

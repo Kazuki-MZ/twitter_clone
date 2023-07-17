@@ -9,7 +9,8 @@ class TweetsController < ApplicationController
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
-      redirect_to root_path, notice: 'ツイートしました'
+      redirect_to root_path
+      flash[:success] = 'ツイートしました'
     else
       render 'index', status: :unprocessable_entity
     end
