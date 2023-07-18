@@ -1,0 +1,5 @@
+= turbo_frame_tag 'tweets_content'
+  .row
+    .col-12 
+      = render "layouts/tweet", tweet: @following_tweets
+  = paginate @following_tweets, theme: 'bootstrap-5'

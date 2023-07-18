@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Tweet < ApplicationRecord
-  has_many_attached :images
+  has_one_attached :image
   has_many :favorites, dependent: :destroy
   has_many :favorite_users, through: :favarites, source: :user
   has_many :retweets, dependent: :destroy
@@ -9,4 +9,6 @@ class Tweet < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :comments_users, through: :comments, source: :user
   belongs_to :user
+
+  validates :text, presence: true, length: { maximum: 140 }, if: -> { image.blank? }
 end

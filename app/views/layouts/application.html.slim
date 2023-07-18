@@ -11,8 +11,8 @@ html
   body
     header 
       - flash.each do |key, value|
-        div class="flash #{key}"
-        = value
+        div class="alert alert-#{key}"
+          = value
       div class="border-bottom d-flex align-items-center justify-content-between"
         h4.twitter_icon class="bi bi-twitter" Twitterクローン
         nav class="navbar d-flex justify-content-end"

@@ -8,9 +8,10 @@ Rails.application.routes.draw do
   devise_scope :user do
     get '/users/sign_out', to: 'devise/sessions#destroy'
   end
-  resources :tweets, only: :index
+  resources :tweets, only: %i[index create]
   root to: 'tweets#index'
 
+  resources :following_user_tweets, only: %i[index]
   resource :profile, only: %i[edit update]
   resource :profile, only: %i[show] do
     resources :mytweets, only: %i[index]

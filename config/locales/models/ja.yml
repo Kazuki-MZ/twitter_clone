@@ -23,4 +23,6 @@ ja:
         bio: 自己紹介
         location: 場所
         website: ウェブサイト
+      tweet:
+        text: テキスト
     

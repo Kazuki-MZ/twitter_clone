@@ -1,8 +1,12 @@
-    = form_with  url: '#', local: true, class: 'col-auto' do |f|
+  .row class="border-top border-bottom"
+    .col-1 class="d-flex justify-content-center"
+      = link_to profile_path
+        = image_tag current_user.profile.icon, size: "70x70", class: "rounded-circle"
+    .col-11 
       .form_group
-        = f.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
+        = form.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
       .form-group
-        = f.label :image, class: 'bi bi-card-image fs-4'
-          = f.file_field :image, class:"hidden_image_form"
-      .form__button.d-flex.justify-content-end
-        = f.submit "ツイートする", class: 'btn btn-primary'
+        = form.label :image, class: 'bi bi-card-image fs-4'
+          = form.file_field :image, class:"hidden_image_form"
+      .form_button.d-flex.justify-content-end
+        = form.submit "ツイートする", class: 'btn btn-primary'
