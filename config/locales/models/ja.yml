@@ -25,4 +25,6 @@ ja:
         website: ウェブサイト
       tweet:
         text: テキスト
+      comment:
+        content: コメント
     

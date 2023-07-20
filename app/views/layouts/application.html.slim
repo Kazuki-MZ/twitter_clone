@@ -32,7 +32,7 @@ html
             nav class="navbar d-flex justify-content-center "
               ul class="navbar-nav"
                 li.nav-link 
-                = link_to "ホーム", root_path
+                = link_to "ホーム", root_path, class: "text-decoration-none text-dark"
                 li.nav-link
                   = link_to do
                   span.bi-hash.me-2
@@ -54,7 +54,7 @@ html
                   span.bi-twitter.me-2
                   | Twitter Blue
                 li.nav-link
-                  = link_to profile_path do
+                  = link_to profile_path, class: "text-decoration-none text-dark" do
                     span.bi-person.me-2
                     | プロフィール
                 li.nav-link

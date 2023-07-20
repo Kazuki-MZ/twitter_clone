@@ -6,6 +6,12 @@ class TweetsController < ApplicationController
     @tweet = Tweet.new
   end
 
+  def show
+    @tweet = Tweet.find(params[:id])
+    @comment = Comment.new
+    @comments = @tweet.comments.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
+  end
+
   def create
     @tweet = current_user.tweets.build(tweet_params)
     if @tweet.save
