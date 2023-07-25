@@ -1,0 +1,30 @@
+.row
+  .col-auto
+   h3 = link_to tweets_path, class: "bi bi-arrow-left" do
+.row
+  .col-1 class="d-flex justify-content-center align-items-center"
+    = image_tag @tweet.user.profile.icon, size: "65x65", class: "rounded-circle"
+  .col-11 
+    h3 = @tweet.user.profile.nickname
+    h6.text-muted
+      = "@#{current_user.name}"
+.row class="border-bottom"
+  h3.my-3
+    = @tweet.text
+  - if @tweet.image.present?
+    p = image_tag @tweet.image, size: "250x250"
+  p = "#{time_ago_in_words(@tweet.created_at)}前"
+.row class="border-bottom"
+  nav class="nav"
+    li.nav-item
+      a.navbar-brand href="#" class="bi bi-chat"
+    li.nav-item 
+      a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
+    li.nav-item
+      a.navbar-brand href="#" class="bi-heart"
+
+= render "comments/form", { tweet: @tweet, comment: @comment }
+
+- if @tweet.comments.present?
+  = render "comments/comments", { comments: @comments }
+  = paginate @comments, theme: 'bootstrap-5'

@@ -4,5 +4,5 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :tweet
 
-  validates :user_id, uniqueness: { scope: :tweet_id }
+  validates :content, presence: true, length: { maximum: 140 }
 end

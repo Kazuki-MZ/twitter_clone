@@ -1,0 +1,18 @@
+- comments.each do |comment|
+  .card
+    .card-body.border.border-1
+      .row
+        .col-1 class="d-flex justify-content-center align-items-center"
+          = image_tag comment.user.profile.icon, size: "55x55", class: "rounded-circle"
+        .col-11 
+          p.text-muted
+            = "#{time_ago_in_words(comment.created_at)}前"
+          h5 = comment.user.profile.nickname 
+          p = comment.content
+          nav class="nav"
+            li.nav-item
+              a.navbar-brand href="#" class="bi bi-chat"
+            li.nav-item 
+              a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
+            li.nav-item
+              a.navbar-brand href="#" class="bi-heart"
