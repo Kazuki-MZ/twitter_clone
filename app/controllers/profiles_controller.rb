@@ -2,6 +2,11 @@
 
 class ProfilesController < ApplicationController
   before_action :profile_info, only: %i[edit update]
+
+  def show
+    @my_tweets = Tweet.where(user_id: current_user.id).order(id: 'desc').page(params[:page]).per(5)
+  end
+
   def edit
     @my_profile = UserProfileForm.new(current_user, profile: @profile)
   end

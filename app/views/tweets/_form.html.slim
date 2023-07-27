@@ -1,12 +1,23 @@
+.row 
+  .col-12
+    h3 ホーム
+    ul class="nav nav-tabs d-flex justify-content-around"
+      .li.nav-item
+        = link_to 'おすすめ', root_path, class: "nav-link "
+      .li.nav-item
+        = link_to 'フォロー中', following_user_tweets_path, class: "nav-link"
+
   .row class="border-top border-bottom"
     .col-1 class="d-flex justify-content-center"
       = link_to profile_path
         = image_tag current_user.profile.icon, size: "70x70", class: "rounded-circle"
     .col-11 
-      .form_group
-        = form.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
-      .form-group
-        = form.label :image, class: 'bi bi-card-image fs-4'
-          = form.file_field :image, class:"hidden_image_form"
-      .form_button.d-flex.justify-content-end
-        = form.submit "ツイートする", class: 'btn btn-primary'
+      = form_with model: tweet do |f|
+        = render 'layouts/error_messages', model: tweet
+        .form_group
+          = f.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
+        .form-group
+          = f.label :image, class: 'bi bi-card-image fs-4'
+            = f.file_field :image, class:"hidden_image_form"
+        .form_button.d-flex.justify-content-end
+          = f.submit "ツイートする", class: 'btn btn-primary'

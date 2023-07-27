@@ -1,0 +1,54 @@
+.row.d-flex.align-items-center
+  .col-auto
+    = link_to root_path, class: "bi bi-arrow-left" do
+  .col-auto 
+    .row.d-flex.flex-column
+      .col-auto style="font-size: 25px;"
+        = current_user.profile.nickname
+      .col-auto.text-muted style="font-size: 15px;"
+        = "#{current_user.tweets.count}件のツイート"
+  div.relative
+    = image_tag current_user.profile.header, style: 'width: 100%; height: 200px'
+    = image_tag current_user.profile.icon, size: "150x150", class: "absolute rounded-circle"
+.row.m-2.d-flex.flex-column
+  .col-auto.d-grid.gap-2.d-md-flex.justify-content-md-end
+    = link_to "プロフィールを編集", edit_profile_path, class: "btn btn-secondary"
+  .col-auto  
+    div.my-4
+      h2 = current_user.profile.nickname
+      h6.text-muted
+        = "@#{current_user.name}"
+    div 
+      - if current_user.profile.bio.present?
+      h4 = current_user.profile.bio
+    div.d-flex.justify-content-start.text-muted.mt-3
+      - if current_user.profile.location.present?
+        span.bi.bi-geo-alt
+          = current_user.profile.location
+      - if current_user.profile.website.present?
+        span.bi.bi-paperclip.mx-3
+          = link_to "#{current_user.profile.website}"
+      - if current_user.date_of_birth.present?
+        span.bi.bi-balloon
+          = current_user.date_of_birth.strftime('%Y年%m月%d日')
+    div.text-muted 
+      p.bi.bi-calendar3
+        = "#{current_user.created_at.strftime('%Y年%m月')}からTwitterを利用しています"
+    div.d-flex.justify-content-start.text-muted
+      p 
+        = current_user.following.count
+        span.text-muted.d-inline
+          | フォロー中
+      p.mx-3
+        = current_user.followers.count
+        span.text-muted
+          | フォロワー
+ul class="nav nav-tabs d-flex justify-content-around"
+  .li.nav-item
+    = link_to 'ツイート', profile_path, class: "nav-link"
+  .li.nav-item
+    = link_to 'いいね', profile_favorites_path, class: "nav-link"
+  .li.nav-item
+    = link_to 'リツイート', profile_retweets_path, class: "nav-link"
+  .li.nav-item
+    = link_to 'コメント', profile_comments_path, class: "nav-link"
