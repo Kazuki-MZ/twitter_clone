@@ -18,5 +18,12 @@
           li.nav-item 
             a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
           li.nav-item
-            a.navbar-brand href="#" class="bi-heart"
+            a.navbar-brand
+            - if current_user.favorite?(tweet)
+              = link_to tweet_favorites_path(tweet), local: true, data: { "turbo-method": :delete } do 
+                i.bi-heart.like
+            - else
+              = link_to tweet_favorites_path(tweet), local: true, data: { "turbo-method": :post } do 
+                i.bi-heart.unlike
+            = tweet.favorites.count if tweet.favorites.present?
     
