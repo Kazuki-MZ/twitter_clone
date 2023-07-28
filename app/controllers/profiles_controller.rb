@@ -4,7 +4,7 @@ class ProfilesController < ApplicationController
   before_action :profile_info, only: %i[edit update]
 
   def show
-    @my_tweets = Tweet.where(user_id: current_user.id).order(id: 'desc').page(params[:page]).per(5)
+    @my_tweets = current_user.tweets.order('tweets.created_at DESC').page(params[:page]).per(5)
   end
 
   def edit
