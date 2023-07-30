@@ -10,13 +10,13 @@ Rails.application.routes.draw do
   end
   resources :tweets, only: %i[index create show] do
     resources :comments, only: %i[create]
+    resource :favorites, only: %i[create destroy]
   end
   root to: 'tweets#index'
 
   resources :following_user_tweets, only: %i[index]
   resource :profile, only: %i[edit update]
   resource :profile, only: %i[show] do
-    resources :mytweets, only: %i[index]
     resources :favorites, only: %i[index]
     resources :retweets, only: %i[index]
     resources :comments, only: %i[index]
