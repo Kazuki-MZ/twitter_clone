@@ -6,4 +6,8 @@ class ApplicationRecord < ActiveRecord::Base
   def favorite?(tweet)
     favorites.where(tweet_id: tweet.id).exists?
   end
+
+  def retweet?(tweet)
+    retweets.where(tweet_id: tweet.id).exists?
+  end
 end

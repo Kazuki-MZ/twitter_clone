@@ -15,8 +15,15 @@
         nav.nav
           li.nav-item
             a.navbar-brand href="#" class="bi bi-chat"
-          li.nav-item 
-            a.navbar-brand href="#" class="bi-arrow-repeat mx-5"
+          li.nav-item.mx-5 
+            a.navbar-brand
+            - if current_user.retweet?(tweet)
+              = link_to tweet_retweets_path(tweet), local: true, data: { "turbo-method": :delete } do 
+                i.bi-arrow-repeat.retweet
+            - else
+              = link_to tweet_retweets_path(tweet), local: true, data: { "turbo-method": :post } do 
+                i.bi-arrow-repeat.unretweet
+            = tweet.retweets.count if tweet.retweets.present?
           li.nav-item
             a.navbar-brand
             - if current_user.favorite?(tweet)
