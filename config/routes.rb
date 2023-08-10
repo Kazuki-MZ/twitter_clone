@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   end
   root to: 'tweets#index'
 
+  resources :relationships, only: %i[create destroy]
   resources :following_user_tweets, only: %i[index]
   resource :profile, only: %i[edit update]
   resource :profile, only: %i[show] do

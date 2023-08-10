@@ -10,4 +10,8 @@ class ApplicationRecord < ActiveRecord::Base
   def retweet?(tweet)
     retweets.where(tweet_id: tweet.id).exists?
   end
+
+  def following?(other_user)
+    following.include?(other_user)
+  end
 end
