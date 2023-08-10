@@ -1,6 +1,23 @@
 .row
   .col-auto
    h3 = link_to tweets_path, class: "bi bi-arrow-left" do
+.row class="d-flex justify-content-end"
+ - if @tweet.user != current_user
+  .col-auto
+    .dropdowmn
+      button.btn.btn-secondary.bi-three-dots type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+      ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"
+        li 
+          a.dropdown-item
+          - if current_user.following?(@tweet.user)
+            = form_with(url: relationship_path,  method: :delete , local: true, data: { turbo: false }) do |f|
+              = f.hidden_field :followed_id, :value => @tweet.user.id
+              = f.submit "フォロー外す", class: "btn"
+          - else
+            = form_with(url: relationships_path,  method: :post , local: true, data: { turbo: false }) do |f|
+              = f.hidden_field :followed_id, :value => @tweet.user.id
+              = f.submit "フォローする", class: "btn"
+
 .row
   .col-1 class="d-flex justify-content-center align-items-center"
     = image_tag @tweet.user.profile.icon, size: "65x65", class: "rounded-circle"
