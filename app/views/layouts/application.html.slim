@@ -46,9 +46,9 @@ html
                   span.bi-envelope.me-2
                   | メッセージ
                 li.nav-link
-                  = link_to do
-                  span.bi-bookmark.me-2
-                  | ブックマーク
+                  = link_to bookmarks_path, class: "text-decoration-none text-dark" do
+                    span.bi-bookmark.me-2
+                    | ブックマーク
                 li.nav-link
                   = link_to do
                   span.bi-twitter.me-2

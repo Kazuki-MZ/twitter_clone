@@ -24,7 +24,7 @@
   .col-11 
     h3 = @tweet.user.profile.nickname
     h6.text-muted
-      = "@#{current_user.name}"
+      = "@#{@tweet.user.name}"
 .row class="border-bottom"
   h3.my-3
     = @tweet.text
@@ -55,7 +55,15 @@
           i.bi-heart.unlike
       = @tweet.favorites.count if @tweet.favorites.present?
     
-
+    li.nav-item.mx-5
+      a.navbar-brand
+      - if current_user.bookmarks?(@tweet)
+        = link_to tweet_bookmarks_path(@tweet), local: true, data: { "turbo-method": :delete } do
+          i.bi-upload.bookmark
+      - else 
+        = link_to tweet_bookmarks_path(@tweet), local: true, data: { "turbo-method": :post } do
+          i.bi-upload.unbookmark
+        
 = render "comments/form", { tweet: @tweet, comment: @comment }
 
 - if @tweet.comments.present?
