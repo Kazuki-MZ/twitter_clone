@@ -14,4 +14,8 @@ class ApplicationRecord < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def bookmarks?(tweet)
+    bookmarks.where(tweet_id: tweet.id).exists?
+  end
 end

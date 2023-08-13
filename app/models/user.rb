@@ -20,6 +20,8 @@ class User < ApplicationRecord
   has_many :retweet_tweets, through: :retweets, source: :tweet
   has_many :comments, dependent: :destroy
   has_many :comment_tweets, through: :comments, source: :tweet
+  has_many :bookmarks, dependent: :destroy
+  has_many :bookmark_tweets, through: :bookmarks, source: :tweet
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

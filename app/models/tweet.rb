@@ -8,6 +8,7 @@ class Tweet < ApplicationRecord
   has_many :retweet_users, through: :retweets, source: :user
   has_many :comments, dependent: :destroy
   has_many :comments_users, through: :comments, source: :user
+  has_many :bookmarks, dependent: :destroy
   belongs_to :user
 
   validates :text, presence: true, length: { maximum: 140 }, if: -> { image.blank? }
