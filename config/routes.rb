@@ -17,7 +17,7 @@ Rails.application.routes.draw do
   root to: 'tweets#index'
 
   resources :bookmarks, only: %i[index]
-  resources :relationships, only: %i[create destroy]
+  resource :relationships, only: %i[create destroy]
   resources :following_user_tweets, only: %i[index]
   resource :profile, only: %i[edit update]
   resource :profile, only: %i[show] do
@@ -26,5 +26,8 @@ Rails.application.routes.draw do
     resources :comments, only: %i[index]
   end
 
+  resources :rooms, only: %i[index show create] do
+    resources :messages, only: %i[index create]
+  end
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

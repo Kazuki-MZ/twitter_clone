@@ -73,3 +73,33 @@ textarea  {
 .unbookmark {
     color: #000000;
 }
+
+.my_message_color {
+    background-color: #1C9BEF;
+    color: #ffff;
+    width: fit-content;
+    border-radius: 10px;
+    padding : 10px;
+    margin: 5px;
+    font-size: large;
+}
+.other_message_color {
+    background-color: #EFF3F4;
+    color: #000000;
+    width: fit-content;
+    border-radius: 10px;
+    padding : 10px;
+    margin: 5px;
+    font-size: large;
+}
+.posting_time_size {
+    font-size: smaller;
+}
+.container-right {
+    display: flex;
+    justify-content: flex-end;
+  }
+.container-left {
+    display: flex;
+    justify-content: flex-start;
+  }

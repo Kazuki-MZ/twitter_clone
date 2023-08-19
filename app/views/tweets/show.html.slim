@@ -10,14 +10,17 @@
         li 
           a.dropdown-item
           - if current_user.following?(@tweet.user)
-            = form_with(url: relationship_path,  method: :delete , local: true, data: { turbo: false }) do |f|
+            = form_with(url: relationships_path,  method: :delete , local: true, data: { turbo: false }) do |f|
               = f.hidden_field :followed_id, :value => @tweet.user.id
               = f.submit "フォロー外す", class: "btn"
           - else
             = form_with(url: relationships_path,  method: :post , local: true, data: { turbo: false }) do |f|
               = f.hidden_field :followed_id, :value => @tweet.user.id
               = f.submit "フォローする", class: "btn"
-
+          a.dropdown-item
+            = form_with(url: rooms_path,  method: :post , local: true, data: { turbo: false }) do |f|
+              = f.hidden_field :message_partner_id, :value => @tweet.user.id
+              = f.submit "メッセージを送る", class: "btn"
 .row
   .col-1 class="d-flex justify-content-center align-items-center"
     = image_tag @tweet.user.profile.icon, size: "65x65", class: "rounded-circle"

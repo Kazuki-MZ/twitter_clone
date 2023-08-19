@@ -1,0 +1,23 @@
+.container-fluid.vh-100 
+  .row.h-100
+    .col-3.border-end
+      = render "rooms/room_list"
+    .col-9
+      .row 
+        .col-auto
+        - @messages.each do |message|
+          - if message.user_id == current_user.id
+            .container-right
+              p.my_message_color.ml-auto
+                = message.text
+            p.text-muted.text-end.posting_time_size
+              = message.created_at.strftime('%Y/%m/%d %I:%M(%p)')
+          - else 
+            .container-left
+              p.other_message_color.ml-auto
+                = message.text
+            p.text-muted.text-start.posting_time_size
+              = message.created_at.strftime('%Y/%m/%d %I:%M(%p)')
+
+        = render "messages/form", { message: @message, room: @room }
+        = paginate @messages, theme: 'bootstrap-5'
