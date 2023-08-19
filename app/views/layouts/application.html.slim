@@ -42,9 +42,9 @@ html
                   span.bi-bell.me-2
                   | 通知
                 li.nav-link
-                  = link_to do
-                  span.bi-envelope.me-2
-                  | メッセージ
+                  = link_to rooms_path, class: "text-decoration-none text-dark" do
+                    span.bi-envelope.me-2
+                    | メッセージ
                 li.nav-link
                   = link_to bookmarks_path, class: "text-decoration-none text-dark" do
                     span.bi-bookmark.me-2

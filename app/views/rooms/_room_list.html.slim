@@ -1,0 +1,11 @@
+h1 メッセージ部屋
+.card
+- current_user.rooms.each do |room|
+  .card-body.border.border-1
+    .row.d-flex.flex-row
+    - room.room_users.where.not(user_id: current_user.id).each do |room_user|
+      .col-1 
+        = image_tag room_user.user.profile.icon, size: "55x55", class: "rounded-circle"
+      .col-11
+        h5 = room_user.user.name
+      = link_to 'メッセージをする', room_messages_path(room), class: 'btn btn-outline-primary'

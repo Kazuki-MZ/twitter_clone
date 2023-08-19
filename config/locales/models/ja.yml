@@ -27,4 +27,5 @@ ja:
         text: テキスト
       comment:
         content: コメント
-    
+      message:
+        text: テキスト
