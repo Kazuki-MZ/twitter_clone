@@ -58,26 +58,14 @@ maria.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/hea
 
 jone_tweet1 = jone.tweets.create!(text: 'Test tweet from John')
 jone_tweet2 = jone.tweets.create!(text: 'Hello from John')
-jone_tweet3 = jone.tweets.create!(text: 'Nice!')
 nick_tweet1 = nick.tweets.create!(text: 'Test tweet from Nick')
-nick_tweet2 = nick.tweets.create!(text: 'Hello')
-nick_tweet3 = nick.tweets.create!(text: 'Nice!!!')
 maria_tweet1 = maria.tweets.create!(text: 'Test tweet from Maria')
-maria_tweet2 = maria.tweets.create!(text: 'Hello from Maria')
-maria_tweet3 = maria.tweets.create!(text: 'Oh!!')
+
+jone.favorites.create!(tweet_id: nick_tweet1.id)
+jone.comments.create!(content: 'Nice', tweet_id: maria_tweet1.id)
+nick.retweets.create!(tweet_id: jone_tweet1.id)
+maria.favorites.create!(tweet_id: jone_tweet2.id)
 
 jone.following << nick
 nick.following << maria
 maria.following << jone
-
-jone.favorite_tweets << [maria_tweet2, nick_tweet1, nick_tweet2, nick_tweet3, maria_tweet1, maria_tweet3]
-nick.favorite_tweets << [jone_tweet1, jone_tweet2, jone_tweet3, maria_tweet1, maria_tweet2, maria_tweet3]
-maria.favorite_tweets << [jone_tweet1, jone_tweet2, jone_tweet3, nick_tweet1, nick_tweet2, nick_tweet3]
-
-jone.retweet_tweets << [maria_tweet1, maria_tweet2, nick_tweet1, nick_tweet2, nick_tweet3, maria_tweet3]
-nick.retweet_tweets << [jone_tweet1, jone_tweet2, jone_tweet3, maria_tweet1, maria_tweet2, maria_tweet3]
-maria.retweet_tweets << [nick_tweet2, nick_tweet3, jone_tweet1, jone_tweet2, jone_tweet3, nick_tweet1]
-
-jone.comment_tweets << [maria_tweet3, nick_tweet1, nick_tweet2, nick_tweet3, maria_tweet1, maria_tweet2]
-nick.comment_tweets << [jone_tweet1, jone_tweet2, jone_tweet3, maria_tweet1, maria_tweet2, maria_tweet3]
-maria.comment_tweets << [jone_tweet1, jone_tweet2, jone_tweet3, nick_tweet1, nick_tweet2, nick_tweet3]
