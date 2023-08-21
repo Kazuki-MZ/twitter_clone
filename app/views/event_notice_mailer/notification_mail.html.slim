@@ -1,0 +1,9 @@
+h3 = "#{@user.profile.nickname}様。Twitter通知のお知らせです"
+
+- case @event.class.name
+- when 'Favorite'
+  p = "#{@event.user.profile.nickname}さんがあなたの投稿にいいねしました"
+- when 'Retweet'
+  p = "#{@event.user.profile.nickname}さんがあなたの投稿をリツイートしました"
+- when 'Comment'
+  p = "#{@event.user.profile.nickname}さんがあなたの投稿にコメントしました"

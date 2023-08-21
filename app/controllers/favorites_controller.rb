@@ -6,7 +6,8 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    current_user.favorites.create!(tweet_id: params[:tweet_id])
+    @favorite = current_user.favorites.create!(tweet_id: params[:tweet_id])
+    EventNoticeMailer.with(event: @favorite, user: @favorite.tweet.user).notification_mail.deliver_later if @favorite.tweet.user != current_user
     redirect_back(fallback_location: root_path)
   end
 
