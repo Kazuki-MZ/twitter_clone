@@ -10,6 +10,7 @@ class CommentsController < ApplicationController
     @comments = @tweet.comments.includes(:user).order(created_at: :desc).page(params[:page]).per(5)
     @comment = current_user.comments.build(comment_params)
     if @comment.save
+      EventNoticeMailer.with(event: @comment, user: @comment.tweet.user).notification_mail.deliver_later if @comment.tweet.user != current_user
       redirect_to tweet_path(@tweet)
       flash[:success] = 'コメントしました'
     else

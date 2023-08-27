@@ -29,5 +29,6 @@ Rails.application.routes.draw do
   resources :rooms, only: %i[index show create] do
     resources :messages, only: %i[index create]
   end
+  resources :notifications, only: %i[index]
   mount LetterOpenerWeb::Engine, at: '/letter_opener' if Rails.env.development?
 end

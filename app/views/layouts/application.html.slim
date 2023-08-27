@@ -34,13 +34,9 @@ html
                 li.nav-link 
                 = link_to "ホーム", root_path, class: "text-decoration-none text-dark"
                 li.nav-link
-                  = link_to do
-                  span.bi-hash.me-2
-                  | 話題を検索
-                li.nav-link
-                  = link_to do
-                  span.bi-bell.me-2
-                  | 通知
+                  = link_to  notifications_path, class: "text-decoration-none text-dark" do
+                    span.bi-bell.me-2
+                    | 通知
                 li.nav-link
                   = link_to rooms_path, class: "text-decoration-none text-dark" do
                     span.bi-envelope.me-2
@@ -57,12 +53,7 @@ html
                   = link_to profile_path, class: "text-decoration-none text-dark" do
                     span.bi-person.me-2
                     | プロフィール
-                li.nav-link
-                  = link_to do 
-                  span.bi-filter-circle.me-2
-                  | もっと見る
-                li.nav-link
-                  = link_to "ツイートする" 
+
           .col-10
             = yield
   - else 

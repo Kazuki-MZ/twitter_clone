@@ -1,0 +1,28 @@
+.card
+- @notifications.each do |notification|
+  .card-body.border.border-1
+    .row
+      - case notification.event_type
+      - when 'Favorite'
+        .col-1 class="d-flex justify-content-center"
+          h2.bi-heart.like.mt-4
+        .col-11.mt-3
+          = image_tag notification.event.user.profile.icon, size: "55x55", class: "rounded-circle"
+          p = "#{notification.event.user.profile.nickname}さんがあなたの投稿にいいねしました"
+          p.text-muted
+            = notification.event.tweet.text
+      - when 'Retweet'
+        .col-1 class="d-flex justify-content-center" 
+          h2.bi-arrow-repeat.retweet.mt-4
+        .col-11.mt-3
+          = image_tag notification.event.user.profile.icon, size: "55x55", class: "rounded-circle"
+          p = "#{notification.event.user.profile.nickname}さんがあなたの投稿をリツイートしました"
+          p.text-muted
+             = notification.event.tweet.text
+      - when 'Comment'
+        .col-auto.m-3 
+          = image_tag notification.event.user.profile.icon, size: "55x55", class: "rounded-circle"
+          p = "#{notification.event.user.profile.nickname}さんがあなたの投稿にコメントしました"
+          p.text-muted
+            = notification.event.tweet.text
+= paginate @notifications, theme: 'bootstrap-5'
