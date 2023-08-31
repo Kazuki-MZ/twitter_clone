@@ -11,7 +11,7 @@ RSpec.describe 'Users', type: :request do
     context 'パラメーターが正常な場合' do
       it '303レスポンスを返すこと' do
         post user_registration_path, params: { user: user_params }
-        expect(response).to have_http_status "303"
+        expect(response).to have_http_status '303'
       end
 
       it 'createが成功していること' do
