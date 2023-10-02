@@ -1,9 +1,10 @@
-# README
+# RailsでX(旧Twitter)クローン実装
 
-課題用のrailsテンプレートです。
+<img width="950" alt="スクリーンショット 2023-10-02 18 29 30" src="https://github.com/kazu1212-star/twitter_clone/assets/115007915/93d05d70-c7a1-4ae4-8080-cb7566372817">
 
-## 前提
 
+
+## 環境構築
 - dockerが必要です。
 
 ## setup
