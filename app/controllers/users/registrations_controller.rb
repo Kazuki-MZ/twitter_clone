@@ -12,7 +12,7 @@ module Users
       super do |resource|
         resource.build_profile(nickname: resource.name)
         resource.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/icon.jpg')), filename: 'icon.jpeg')
-        resource.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')), filename: 'header.jpeg')
+        resource.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/set_header.jpg')), filename: 'set_useheader.jpeg')
         resource.profile.save!
       end
     end

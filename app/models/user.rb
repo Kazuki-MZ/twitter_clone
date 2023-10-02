@@ -46,8 +46,8 @@ class User < ApplicationRecord
       if user.profile.blank?
         user.build_profile(nickname: auth.info.nickname)
         user.profile.icon.attach(io: icon_image, filename: 'user_avatar.jpg')
-        user.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
-                                   filename: 'header.jpeg')
+        user.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/set_header.jpg')),
+                                   filename: 'set_header.jpeg')
       end
     end
   end

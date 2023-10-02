@@ -19,10 +19,10 @@ jone.save!
 
 jone.create_profile!({ nickname: 'Jone', bio: "Hello I'm jone", location: '東京都', website: 'https://www.jone.example.com' })
 
-jone.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/dog.jpg')),
-                         filename: 'dog.jpeg')
-jone.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
-                           filename: 'header.jpeg')
+jone.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/fish.jpg')),
+                         filename: 'fish.jpeg')
+jone.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/set_header.jpg')),
+                           filename: 'set_header.jpeg')
 
 nick = User.new({
                   name: 'test_nick',
@@ -35,10 +35,10 @@ nick.skip_confirmation!
 nick.save!
 
 nick.create_profile!({ nickname: 'Nick', bio: "Hello I'm nick", location: '東京都', website: 'https://www.nick.example.com' })
-nick.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/shark.jpg')),
-                         filename: 'shark.jpeg')
-nick.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
-                           filename: 'header.jpeg')
+nick.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/cat.jpg')),
+                         filename: 'cat.jpeg')
+nick.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/set_header.jpg')),
+                           filename: 'set_header.jpeg')
 
 maria = User.new({
                    name: 'test_maria',
@@ -51,10 +51,10 @@ maria.skip_confirmation!
 maria.save!
 
 maria.create_profile!({ nickname: 'Maria', bio: "Hello I'm maria", location: '東京都', website: 'https://www.maria.example.com' })
-maria.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/banana.jpg')),
-                          filename: 'banana.jpeg')
-maria.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/header.jpg')),
-                            filename: 'header.jpeg')
+maria.profile.icon.attach(io: File.open(Rails.root.join('app/assets/images/panpukin.jpg')),
+                          filename: 'panpukin.jpeg')
+maria.profile.header.attach(io: File.open(Rails.root.join('app/assets/images/set_header.jpg')),
+                            filename: 'set_header.jpeg')
 
 jone_tweet1 = jone.tweets.create!(text: 'Test tweet from John')
 jone_tweet2 = jone.tweets.create!(text: 'Hello from John')
