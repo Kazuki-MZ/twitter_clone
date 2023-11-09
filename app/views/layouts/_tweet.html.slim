@@ -5,9 +5,9 @@
      - if tweet.user != current_user
       .col-auto
         .dropdowmn
-          button.btn.bi-three-dots type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
+          button.btn.bi-three-dots.fs-4 type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false"
           ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1"
-            li 
+            li class="text-center"
               a.dropdown-item
               - if current_user.following?(tweet.user)
                 = form_with(url: relationships_path,  method: :delete , local: true, data: { turbo: false }) do |f|
@@ -34,7 +34,8 @@
         p = tweet.text
         - if tweet.image.present?
           = image_tag tweet.image, size: "150x150"
-        = link_to '詳細', tweet_path(tweet), class: 'btn btn-primary'
+        .details-button
+          = link_to '詳細', tweet_path(tweet), class: 'btn btn-primary mt-2'
         nav.nav
           li.nav-item
             a.navbar-brand href="#" class="bi bi-chat"
