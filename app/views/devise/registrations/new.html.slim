@@ -30,4 +30,4 @@
             .form__button
               = link_to "GitHubで新規登録", user_github_omniauth_authorize_path, class: "btn btn-dark", method: :post, data: { turbo: false }
             .actions
-              = link_to "ログイン", new_session_path(resource_name)
+              = link_to "ログイン", new_session_path(resource_name), class: 'btn btn-secondary mx-2'
