@@ -6,6 +6,7 @@
           h1.twitter_icon class="bi bi-twitter"
           h2.form__title Twitterにログイン
           = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+            = render "devise/shared/error_messages", resource: resource
             .form-group
                 = f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', placeholder: 'メールアドレス'
             
@@ -18,4 +19,4 @@
             .form__button
               = link_to "GitHubでログイン", user_github_omniauth_authorize_path,  class: "btn btn-dark", method: :post
             .action
-              = link_to "新規作成", new_registration_path(resource_name)
+              = link_to "新規作成", new_registration_path(resource_name), class: 'btn btn-secondary mx-2'

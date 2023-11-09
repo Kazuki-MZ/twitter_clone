@@ -17,7 +17,7 @@
         .form_group
           = f.text_area :text, class: 'form-control ', placeholder: 'いまどうしてる？'
         .form-group
-          = f.label :image, class: 'bi bi-card-image fs-4'
-            = f.file_field :image, class:"hidden_image_form"
+          = f.file_field :image, class: 'form-control ', accept: 'image/*', data: { target: '#preview-target' }
+
         .form_button.d-flex.justify-content-end
-          = f.submit "ツイートする", class: 'btn btn-primary'
+          = f.submit "ツイートする", class: 'btn btn-primary mt-2'
